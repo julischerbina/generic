@@ -1,22 +1,34 @@
 package transport;
 
 import Driver.DriverC;
-import Driver.DriverD;
 
-public class Cargo extends Transport <DriverC>{
+public class Truck extends Transport <DriverC>{
+    private Carring carring;
 
-    public Cargo(String brand, String model, double engineVolume) {
+    public Truck(String brand,
+                 String model,
+                 double engineVolume,
+                 Carring carring) {
         super(brand, model, engineVolume);
+        this.carring = carring;
     }
 
     public void maxSpeed() {
         int maxSpeed = (int)(Math.random() * 181);
         System.out.println("Максимальная скорость у " + getBrand() + " " + getModel() + " " + "составила " + maxSpeed + " км/ч;");
     }
-    @Override
-    public void pitStop(Transport transport) {
-        System.out.println(transport.getBrand() + " " + transport.getModel() + " зашел на пит-стоп;");
+
+    public void printType() {
+        if (carring != null) {
+            System.out.println(carring);
+        } else {
+            System.out.println("Данных по транспортному средству недостаточно");
+        }
     }
+    @Override
+        public void pitStop (Transport transport) {
+            System.out.println(transport.getBrand() + " " + transport.getModel() + " зашел на пит-стоп;");
+        }
 
     @Override
     public void bestLapTime() {
@@ -35,5 +47,13 @@ public class Cargo extends Transport <DriverC>{
         System.out.println("Водитель " + driverC.getFullName() + " управляет грузовиком "
                 + transport.getBrand() + " " + transport.getModel() +
                 " и будет участвовать в заезде");
+    }
+
+    public Carring getCarring() {
+        return carring;
+    }
+
+    public void setCarring(Carring carring) {
+        this.carring = carring;
     }
 }

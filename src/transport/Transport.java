@@ -6,12 +6,8 @@ public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
     private double engineVolume;
-
     private T driver;
-
-
     static final String defaultValue = "default";
-
     static final double defaultEngineVolume = 1.5;
 
     public Transport(String brand, String model, double engineVolume) {
@@ -26,12 +22,13 @@ public abstract class Transport<T extends Driver> implements Competing {
             this.model = model;
         }
         setEngineVolume(engineVolume);
-
     }
 
     public abstract void startMoving();
 
     public abstract void stopMoving();
+
+    public abstract void printType();
 
     public String getBrand() {
         return brand;

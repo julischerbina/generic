@@ -3,15 +3,29 @@ package transport;
 import Driver.Driver;
 import Driver.DriverB;
 
-public class Car extends Transport <DriverB> {
+public class Car extends Transport<DriverB> {
 
-    public Car(String brand, String model, double engineVolume) {
+    private BodyType bodyType;
+
+    public Car(String brand,
+               String model,
+               double engineVolume,
+               BodyType bodyType) {
         super(brand, model, engineVolume);
+        this.bodyType = bodyType;
     }
 
     public void maxSpeed() {
         int maxSpeed = (int) (Math.random() * 301);
         System.out.println("Максимальная скорость у " + getBrand() + " " + getModel() + " " + "составила " + maxSpeed + " км/ч;");
+    }
+
+    public void printType() {
+        if (bodyType != null) {
+            System.out.println(bodyType);
+        } else {
+            System.out.println("Данных по транспортному средству недостаточно");
+        }
     }
 
     @Override
@@ -35,10 +49,17 @@ public class Car extends Transport <DriverB> {
     }
 
     @Override
-    public void printInfo(Transport transport, Driver driver) {
-        System.out.println("Водитель " + driver.getFullName() + " управляет автомобилем "
+    public void printInfo(Transport transport, Driver driverB) {
+        System.out.println("Водитель " + driverB.getFullName() + " управляет автомобилем "
                 + transport.getBrand() + " " + transport.getModel() +
                 " и будет участвовать в заезде");
     }
 
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
+    }
 }
