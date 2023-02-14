@@ -1,6 +1,8 @@
 package transport;
 
+import Driver.Driver;
 import Driver.DriverD;
+import transportException.DiagnosticFailedException;
 
 public class Bus extends Transport<DriverD> {
     private Capacity capacity;
@@ -15,6 +17,12 @@ public class Bus extends Transport<DriverD> {
         int maxSpeed = (int) (Math.random() * 201);
         System.out.println("Максимальная скорость у " + getBrand() + " " + getModel() + " " + "составила " + maxSpeed + " км/ч;");
     }
+
+    @Override
+    public void passDiagnostics() throws DiagnosticFailedException{
+        throw new DiagnosticFailedException("Данное транспортное средство в диагностике не нуждается!", this);
+    }
+
     public void printType() {
         if (capacity != null) {
             System.out.println(capacity);
@@ -22,6 +30,13 @@ public class Bus extends Transport<DriverD> {
             System.out.println("Данных по транспортному средству недостаточно");
         }
     }
+
+    /*@Override
+    public void printInfo(Driver driverD) {
+        System.out.println("Водитель " + driverD.getFullName() + " управляет автобусом "
+                + getBrand() + " " + getModel() +
+                " и будет участвовать в заезде");
+    }*/
 
     @Override
     public void pitStop(Transport transport) {
@@ -43,13 +58,7 @@ public class Bus extends Transport<DriverD> {
         System.out.println("Автобус " + getBrand() + " " + getModel() + " закончил движение");
     }
 
-    public static void printInfo(Transport transport, DriverD driverD) {
-        System.out.println("Водитель " + driverD.getFullName() + " управляет автобусом "
-                + transport.getBrand() + " " + transport.getModel() +
-                " и будет участвовать в заезде");
-    }
-
-    public Capacity getCapacity() {
+      public Capacity getCapacity() {
         return capacity;
     }
 

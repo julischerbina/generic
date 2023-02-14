@@ -1,8 +1,14 @@
 package Driver;
 
+import transportException.HavingLicenseException;
+
 public class DriverB extends Driver{
     public DriverB(String fullName) {
         super(fullName);
+    }
+
+    public DriverB(String fullName, boolean haveDriveLicense, int experience) throws HavingLicenseException {
+        super(fullName, haveDriveLicense, experience);
     }
 
     @Override

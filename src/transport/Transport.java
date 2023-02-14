@@ -1,12 +1,13 @@
 package transport;
 
 import Driver.Driver;
+import transportException.DiagnosticFailedException;
 
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
     private double engineVolume;
-    private T driver;
+    public T driver;
     static final String defaultValue = "default";
     static final double defaultEngineVolume = 1.5;
 
@@ -63,9 +64,7 @@ public abstract class Transport<T extends Driver> implements Competing {
                 '}';
     }
 
-    public void printInfo(Transport transport, Driver driver) {
-
-    }
+    //public abstract void printInfo(Driver driver);
 
     @Override
     public void pitStop(Transport transport) {
@@ -81,4 +80,7 @@ public abstract class Transport<T extends Driver> implements Competing {
     public void maxSpeed() {
 
     }
+
+    public abstract void passDiagnostics() throws DiagnosticFailedException;
+
 }

@@ -20,6 +20,11 @@ public class Car extends Transport<DriverB> {
         System.out.println("Максимальная скорость у " + getBrand() + " " + getModel() + " " + "составила " + maxSpeed + " км/ч;");
     }
 
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Автомобиль " + getBrand() + getModel() + " отправлен на диагностику");
+    }
+
     public void printType() {
         if (bodyType != null) {
             System.out.println(bodyType);
@@ -27,6 +32,14 @@ public class Car extends Transport<DriverB> {
             System.out.println("Данных по транспортному средству недостаточно");
         }
     }
+
+    /*@Override
+    public void printInfo(Driver driverb) {
+        System.out.println("Водитель " + driverb.getFullName() + " управляет автомобилем "
+                + getBrand() + " " + getModel() +
+                " и будет участвовать в заезде");
+
+    }*/
 
     @Override
     public void pitStop(Transport transport) {
@@ -48,12 +61,6 @@ public class Car extends Transport<DriverB> {
         System.out.println("Автомобиль " + getBrand() + " " + getModel() + " закончил движение");
     }
 
-    @Override
-    public void printInfo(Transport transport, Driver driverB) {
-        System.out.println("Водитель " + driverB.getFullName() + " управляет автомобилем "
-                + transport.getBrand() + " " + transport.getModel() +
-                " и будет участвовать в заезде");
-    }
 
     public BodyType getBodyType() {
         return bodyType;

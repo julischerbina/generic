@@ -1,5 +1,6 @@
 package transport;
 
+import Driver.Driver;
 import Driver.DriverC;
 
 public class Truck extends Transport <DriverC>{
@@ -16,6 +17,11 @@ public class Truck extends Transport <DriverC>{
     public void maxSpeed() {
         int maxSpeed = (int)(Math.random() * 181);
         System.out.println("Максимальная скорость у " + getBrand() + " " + getModel() + " " + "составила " + maxSpeed + " км/ч;");
+    }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Грузовик " + getBrand() + getModel() + " отправлен на диагностику");
     }
 
     public void printType() {
@@ -43,11 +49,11 @@ public class Truck extends Transport <DriverC>{
     public void stopMoving() {
         System.out.println("Грузовой автомобиль " + getBrand() + " " + getModel() + " закончил движение");
     }
-    public static void printInfo(Transport transport, DriverC driverC) {
+    /*public void printInfo(Driver driverC) {
         System.out.println("Водитель " + driverC.getFullName() + " управляет грузовиком "
-                + transport.getBrand() + " " + transport.getModel() +
+                + getBrand() + " " + getModel() +
                 " и будет участвовать в заезде");
-    }
+    }*/
 
     public Carring getCarring() {
         return carring;

@@ -1,5 +1,7 @@
 package Driver;
 
+import transportException.HavingLicenseException;
+
 public abstract class Driver {
     private String fullName;
     private boolean haveDriveLicense;
@@ -7,6 +9,12 @@ public abstract class Driver {
 
     public Driver(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Driver(String fullName, boolean haveDriveLicense, int experience) throws HavingLicenseException {
+        this(fullName);
+        setHaveDriveLicense(haveDriveLicense);
+        this.experience = experience;
     }
 
     public String getFullName() {
@@ -17,12 +25,21 @@ public abstract class Driver {
         this.fullName = fullName;
     }
 
-    public boolean isHaveDriveLicense() {
+    public boolean isHaveDriveLicense(){
         return haveDriveLicense;
     }
 
+
     public void setHaveDriveLicense(boolean haveDriveLicense) {
-        this.haveDriveLicense = haveDriveLicense;
+        if (haveDriveLicense) {
+            this.haveDriveLicense = true;
+        } else {
+            try {
+                throw new HavingLicenseException();
+            } catch (HavingLicenseException e) {
+                System.out.println("Необходимо указать тип прав у " + this.fullName);
+            }
+        }
     }
 
     public int getExperience() {
