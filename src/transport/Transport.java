@@ -7,7 +7,7 @@ public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
     private double engineVolume;
-    public T driver;
+    private T driver;
     static final String defaultValue = "default";
     static final double defaultEngineVolume = 1.5;
 

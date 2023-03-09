@@ -9,13 +9,17 @@ import transportException.HavingLicenseException;
 import java.util.Random;
 
 public class Main {
-    public static void main(String[] args) throws DiagnosticFailedException, HavingLicenseException {
+    public static void main(String[] args)  {
         Random rd = new Random();
         Bus bus1 = new Bus("Икарус", "первый", 5, Capacity.MIDDLE);
         Bus bus2 = new Bus("Икарус", "второй", 4, Capacity.BIG);
         Bus bus3 = new Bus("Икарус", "третий", 6, Capacity.EXTRA_SMALL);
         Bus bus4 = new Bus("Икарус", "четвертый", 3.5, Capacity.SMALL);
-        DriverB first = new DriverB("A", false, 3);
+        try {
+            DriverB first = new DriverB("A", false, 3);
+        } catch (HavingLicenseException e) {
+            throw new RuntimeException(e);
+        }
         Car car1 = new Car("Audi", "tt", 5, BodyType.SEDAN);
         Car car2 = new Car("Audi", "aa", 4.5, BodyType.SEDAN);
         Car car3 = new Car("Audi", "vv", 5.5, BodyType.CUPE);

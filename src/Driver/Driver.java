@@ -30,15 +30,11 @@ public abstract class Driver {
     }
 
 
-    public void setHaveDriveLicense(boolean haveDriveLicense) {
+    public void setHaveDriveLicense(boolean haveDriveLicense) throws HavingLicenseException {
         if (haveDriveLicense) {
             this.haveDriveLicense = true;
         } else {
-            try {
                 throw new HavingLicenseException();
-            } catch (HavingLicenseException e) {
-                System.out.println("Необходимо указать тип прав у " + this.fullName);
-            }
         }
     }
 
