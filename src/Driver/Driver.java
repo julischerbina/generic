@@ -50,4 +50,9 @@ public abstract class Driver {
     public abstract void stopMoving();
 
     public abstract void refuelCar();
+
+    @Override
+    public String toString() {
+        return fullName;
+    }
 }

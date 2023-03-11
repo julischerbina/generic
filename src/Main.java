@@ -6,20 +6,40 @@ import transport.*;
 import transportException.DiagnosticFailedException;
 import transportException.HavingLicenseException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Random rd = new Random();
         Bus bus1 = new Bus("Икарус", "первый", 5, Capacity.MIDDLE);
         Bus bus2 = new Bus("Икарус", "второй", 4, Capacity.BIG);
         Bus bus3 = new Bus("Икарус", "третий", 6, Capacity.EXTRA_SMALL);
         Bus bus4 = new Bus("Икарус", "четвертый", 3.5, Capacity.SMALL);
+
+        DriverB driverB;
         try {
-            DriverB first = new DriverB("A", false, 3);
+            driverB = new DriverB("A", true, 3);
         } catch (HavingLicenseException e) {
+            System.out.println("Укажите тип прав!");
             throw new RuntimeException(e);
         }
+        DriverC driverC;
+        try {
+            driverC = new DriverC("C", true, 5);
+        } catch (HavingLicenseException e) {
+            System.out.println("Укажите тип прав!");
+            throw new RuntimeException(e);
+        }
+        DriverD driverD;
+        try {
+            driverD = new DriverD("D", true, 5);
+        } catch (HavingLicenseException e) {
+            System.out.println("Укажите тип прав!");
+            throw new RuntimeException(e);
+        }
+
         Car car1 = new Car("Audi", "tt", 5, BodyType.SEDAN);
         Car car2 = new Car("Audi", "aa", 4.5, BodyType.SEDAN);
         Car car3 = new Car("Audi", "vv", 5.5, BodyType.CUPE);
@@ -28,6 +48,49 @@ public class Main {
         Truck truck2 = new Truck("Man", "big2", 12, Carring.N2);
         Truck truck3 = new Truck("Man", "big3", 14, Carring.N3);
         Truck truck4 = new Truck("Man", "big4", 16, Carring.N2);
+
+        Mehanic mehanic1 = new Mehanic("Vanya Ivanov", "Fixing your car");
+        Mehanic mehanic2 = new Mehanic("Petya Petrov", "Fix your car");
+        Mehanic mehanic3 = new Mehanic("Senya Sidorov", "Fixiki");
+
+        car3.addMehanics(mehanic1);
+        car3.addMehanics(mehanic2);
+        car2.addMehanics(mehanic1);
+        car2.addMehanics(mehanic3);
+        truck2.addMehanics(mehanic1);
+        truck2.addMehanics(mehanic2);
+        truck2.addMehanics(mehanic3);
+        bus3.addMehanics(mehanic1);
+        car3.addDrivers(driverB);
+        car2.addDrivers(driverB);
+        truck2.addDrivers(driverC);
+        bus3.addDrivers(driverD);
+
+
+        List<Transport<?>> racers = new ArrayList<>();
+        racers.add(car2);
+        racers.add(car3);
+        racers.add(truck2);
+        racers.add(bus3);
+
+        for (Transport<?> transport : racers) {
+            System.out.println("У  " + transport + " Водитель: " + transport.getDrivers() + " , Механики: " + transport.getMehanics());
+        }
+
+        List<Driver> drivers = new ArrayList<>();
+        drivers.add(driverB);
+        drivers.add(driverC);
+        drivers.add(driverD);
+        //System.out.println(drivers);
+
+        STO sto = new STO();
+        sto.addTransport(car3);
+        sto.addTransport(bus1);
+        sto.addTransport(truck2);
+
+        sto.runTO();
+        sto.runTO();
+        sto.runTO();
 
         /*truck1.startMoving();
         truck1.stopMoving();
@@ -52,13 +115,13 @@ public class Main {
         //printInfo(car1, driverC);
         //car1.passDiagnostics();
         //bus3.passDiagnostics();
-        сheckDiagnostic(car1, car2, truck1, bus1);
+        //сheckDiagnostic(car1, car2, truck1, bus1);
         //truck1.passDiagnostics();
 
 
-    }
 
-    public static void printInfo(Transport<?> transport, Driver driver) {
+
+    /*public static void printInfo(Transport<?> transport, Driver driver) {
         System.out.println("Водитель " + driver.getFullName() + " управляет автомобилем "
                 + transport.getBrand() + " " + transport.getModel() +
                 " и будет участвовать в заезде");
@@ -72,6 +135,6 @@ public class Main {
                 System.out.println("Произошла ошибка с транспортным средством " + e.getTransport().getBrand() + " " + e.getTransport().getModel());
                 System.out.println(e.getMessage());
             }
-        }
+        }*/
     }
 }

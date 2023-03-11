@@ -3,6 +3,9 @@ package transport;
 import Driver.Driver;
 import transportException.DiagnosticFailedException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
@@ -10,6 +13,9 @@ public abstract class Transport<T extends Driver> implements Competing {
     private T driver;
     static final String defaultValue = "default";
     static final double defaultEngineVolume = 1.5;
+    private final List<Mehanic> mehanics = new ArrayList<>();
+    private final List<Driver> drivers = new ArrayList<>();
+
 
     public Transport(String brand, String model, double engineVolume) {
         if (brand == null || brand.isBlank()) {
@@ -83,4 +89,17 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void passDiagnostics() throws DiagnosticFailedException;
 
+    public List<Mehanic> getMehanics() {
+        return mehanics;
+    }
+    public void addMehanics(Mehanic mehanic) {
+        mehanics.add(mehanic);
+    }
+
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+    public void addDrivers(Driver driver) {
+        drivers.add(driver);
+    }
 }
