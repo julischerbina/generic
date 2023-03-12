@@ -6,9 +6,7 @@ import transport.*;
 import transportException.DiagnosticFailedException;
 import transportException.HavingLicenseException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,29 +51,28 @@ public class Main {
         Mehanic mehanic2 = new Mehanic("Petya Petrov", "Fix your car");
         Mehanic mehanic3 = new Mehanic("Senya Sidorov", "Fixiki");
 
-        car3.addMehanics(mehanic1);
+        //       car3.addMehanics(mehanic1);
+        car3.addMehanics(mehanic2);
         car3.addMehanics(mehanic2);
         car2.addMehanics(mehanic1);
-        car2.addMehanics(mehanic3);
-        truck2.addMehanics(mehanic1);
-        truck2.addMehanics(mehanic2);
-        truck2.addMehanics(mehanic3);
-        bus3.addMehanics(mehanic1);
+        car2.addMehanics(mehanic1);
+//        car2.addMehanics(mehanic3);
+//        truck2.addMehanics(mehanic1);
+//        truck2.addMehanics(mehanic2);
+//        truck2.addMehanics(mehanic3);
+//        bus3.addMehanics(mehanic1);
         car3.addDrivers(driverB);
         car2.addDrivers(driverB);
-        truck2.addDrivers(driverC);
-        bus3.addDrivers(driverD);
+//        truck2.addDrivers(driverC);
+//        bus3.addDrivers(driverD);
 
 
         List<Transport<?>> racers = new ArrayList<>();
         racers.add(car2);
         racers.add(car3);
-        racers.add(truck2);
-        racers.add(bus3);
+//        racers.add(truck2);
+//        racers.add(bus3);
 
-        for (Transport<?> transport : racers) {
-            System.out.println("У  " + transport + " Водитель: " + transport.getDrivers() + " , Механики: " + transport.getMehanics());
-        }
 
         List<Driver> drivers = new ArrayList<>();
         drivers.add(driverB);
@@ -88,9 +85,15 @@ public class Main {
         sto.addTransport(bus1);
         sto.addTransport(truck2);
 
-        sto.runTO();
-        sto.runTO();
-        sto.runTO();
+        Map<Transport<?>, Set<Mehanic>> transportMehanicMap = new HashMap<>();
+
+        for (Transport<?> transport : racers) {
+            transportMehanicMap.put(transport, transport.getMehanics());
+            System.out.println("У  " + transport + " Водитель: " + transport.getDrivers() + " , Механики: " + transport.getMehanics());
+        }
+//        sto.runTO();
+//        sto.runTO();
+//        sto.runTO();
 
         /*truck1.startMoving();
         truck1.stopMoving();
