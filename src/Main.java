@@ -48,6 +48,7 @@ public class Main {
         Truck truck4 = new Truck("Man", "big4", 16, Carring.N2);
 
         Mehanic mehanic1 = new Mehanic("Vanya Ivanov", "Fixing your car");
+        Mehanic mehanic4 = new Mehanic("Vanya Ivanov", "Fixing your car");
         Mehanic mehanic2 = new Mehanic("Petya Petrov", "Fix your car");
         Mehanic mehanic3 = new Mehanic("Senya Sidorov", "Fixiki");
 
@@ -56,6 +57,7 @@ public class Main {
         car3.addMehanics(mehanic2);
         car2.addMehanics(mehanic1);
         car2.addMehanics(mehanic1);
+        car2.addMehanics(mehanic4);
 //        car2.addMehanics(mehanic3);
 //        truck2.addMehanics(mehanic1);
 //        truck2.addMehanics(mehanic2);
@@ -91,6 +93,9 @@ public class Main {
             transportMehanicMap.put(transport, transport.getMehanics());
             System.out.println("У  " + transport + " Водитель: " + transport.getDrivers() + " , Механики: " + transport.getMehanics());
         }
+
+        System.out.println(transportMehanicMap);
+
 //        sto.runTO();
 //        sto.runTO();
 //        sto.runTO();
