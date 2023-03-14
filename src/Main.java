@@ -29,6 +29,12 @@ public class Main {
         } catch (HavingLicenseException e) {
             System.out.println("Укажите тип прав!");
             throw new RuntimeException(e);
+        }DriverC driverC2;
+        try {
+            driverC2 = new DriverC("C", true, 5);
+        } catch (HavingLicenseException e) {
+            System.out.println("Укажите тип прав!");
+            throw new RuntimeException(e);
         }
         DriverD driverD;
         try {
@@ -76,11 +82,18 @@ public class Main {
 //        racers.add(bus3);
 
 
-        List<Driver> drivers = new ArrayList<>();
+        Set<Driver> drivers = new HashSet<>();
         drivers.add(driverB);
         drivers.add(driverC);
+        drivers.add(driverC2);
+        drivers.add(driverD);
         drivers.add(driverD);
         //System.out.println(drivers);
+
+        Iterator<Driver> iterator = drivers.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
 
         STO sto = new STO();
         sto.addTransport(car3);

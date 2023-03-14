@@ -16,7 +16,7 @@ public abstract class Transport<T extends Driver> implements Competing {
     static final String defaultValue = "default";
     static final double defaultEngineVolume = 1.5;
     private final Set<Mehanic> mehanics = new HashSet<>();
-    private final List<Driver> drivers = new ArrayList<>();
+    private final Set<Driver> drivers = new HashSet<Driver>();
 
 
     public Transport(String brand, String model, double engineVolume) {
@@ -98,7 +98,7 @@ public abstract class Transport<T extends Driver> implements Competing {
         mehanics.add(mehanic);
     }
 
-    public List<Driver> getDrivers() {
+    public Set<Driver> getDrivers() {
         return drivers;
     }
     public void addDrivers(Driver driver) {
