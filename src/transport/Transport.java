@@ -3,10 +3,7 @@ package transport;
 import Driver.Driver;
 import transportException.DiagnosticFailedException;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
@@ -15,7 +12,8 @@ public abstract class Transport<T extends Driver> implements Competing {
     private T driver;
     static final String defaultValue = "default";
     static final double defaultEngineVolume = 1.5;
-    private final Set<Mehanic> mehanics = new HashSet<>();
+    private final Map<Transport<?>, Mehanic> mehanics = new HashMap<>();
+
     private final Set<Driver> drivers = new HashSet<Driver>();
 
 
@@ -91,11 +89,12 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void passDiagnostics() throws DiagnosticFailedException;
 
-    public Set<Mehanic> getMehanics() {
+    public Map<Transport<?>, Mehanic> getMehanics() {
         return mehanics;
     }
-    public void addMehanics(Mehanic mehanic) {
-        mehanics.add(mehanic);
+
+    public void addMehanics(Transport<?> transport, Mehanic mehanic) {
+        mehanics.put(transport, mehanic);
     }
 
     public Set<Driver> getDrivers() {

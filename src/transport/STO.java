@@ -3,6 +3,8 @@ package transport;
 import transportException.DiagnosticFailedException;
 
 import java.util.ArrayDeque;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Queue;
 
 public class STO {
@@ -21,7 +23,7 @@ public class STO {
         if (transport != null) {
             try {
                 transport.passDiagnostics();
-                transport.getMehanics().iterator().next().maintenance();
+                transport.getMehanics();
             } catch (DiagnosticFailedException e) {
                 System.out.println("Ошибка при проведении ТО");
             }

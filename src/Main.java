@@ -59,11 +59,11 @@ public class Main {
         Mehanic mehanic3 = new Mehanic("Senya Sidorov", "Fixiki");
 
         //       car3.addMehanics(mehanic1);
-        car3.addMehanics(mehanic2);
-        car3.addMehanics(mehanic2);
-        car2.addMehanics(mehanic1);
-        car2.addMehanics(mehanic1);
-        car2.addMehanics(mehanic4);
+//        car3.addMehanics(mehanic2);
+//        car3.addMehanics(mehanic2);
+//        car2.addMehanics(mehanic1);
+//        car2.addMehanics(mehanic1);
+//        car2.addMehanics(mehanic4);
 //        car2.addMehanics(mehanic3);
 //        truck2.addMehanics(mehanic1);
 //        truck2.addMehanics(mehanic2);
@@ -101,9 +101,12 @@ public class Main {
         sto.addTransport(truck2);
 
         Map<Transport<?>, Set<Mehanic>> transportMehanicMap = new HashMap<>();
+        transportMehanicMap.put(car3, (Set<Mehanic>) mehanic1);
+        transportMehanicMap.put(car3, (Set<Mehanic>) mehanic4);
+
 
         for (Transport<?> transport : racers) {
-            transportMehanicMap.put(transport, transport.getMehanics());
+            transportMehanicMap.put(transport, (Set<Mehanic>) transport.getMehanics());
             System.out.println("У  " + transport + " Водитель: " + transport.getDrivers() + " , Механики: " + transport.getMehanics());
         }
 
